@@ -5,7 +5,6 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -13,8 +12,6 @@ public class SupporFragment {
     private static final String TAG = "SupporFragment";
     private FragmentManager mFragmentManager;
     private int mContentId;
-    private TextView mTextView;
-
     
     private static class Holder {
         static final SupporFragment INSTANCE = new SupporFragment();
@@ -33,17 +30,7 @@ public class SupporFragment {
     }
 
 
-    public SupporFragment addFragmentManager(TextView textView){
-        mTextView = textView;
-        return this;
-    }
 
-    public SupporFragment setTitle(String msg){
-        if (mTextView != null){
-            mTextView.setText(msg);
-        }
-        return this;
-    }
 
 
     public boolean findFragment(Class<?> aClass){
@@ -150,28 +137,12 @@ public class SupporFragment {
     public void replaceFragment(Fragment fragment){
         if (fragment != null) {
             mFragmentManager.beginTransaction()
-                    .addToBackStack(null)
-                    //前面两个为进入和退出，后面则为进栈和出栈
-                    .replace(mContentId, fragment).commit();
+                    .replace(mContentId, fragment,fragment.getClass().getName())
+                    .commit();
         }
     }
 
-    /**
-     * 替换fragment
-     * @param fragment
-     * @param tag
-     */
-    @SuppressLint("ResourceType")
-    public void replaceFragment(Fragment fragment, String tag){
-        if (fragment != null) {
-            mFragmentManager.beginTransaction()
-                   /* .setCustomAnimations(R.anim.right_in,R.anim.left_out,
-                            R.anim.left_in,R.anim.right_out)*/
-                    .addToBackStack(null)
 
-                    .replace(mContentId, fragment,tag).commit();
-        }
-    }
 
     /**
      * 获取当前fragment
@@ -188,7 +159,13 @@ public class SupporFragment {
     }
 
 
-    public void ShowOrHideFragment(Fragment showFragment,Fragment hideFragment,boolean addBackStack){
+    /**
+     * 显示或隐藏
+     * @param showFragment
+     * @param hideFragment
+     * @param addBackStack
+     */
+    public void showOrHideFragment(Fragment showFragment, Fragment hideFragment, boolean addBackStack){
 
         Fragment hFragment = mFragmentManager.findFragmentByTag(hideFragment.getClass().getName());
 

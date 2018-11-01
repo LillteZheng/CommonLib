@@ -1,12 +1,6 @@
 package com.zhengsr.cuslib.support;
 
-import android.app.Activity;
-import android.content.Context;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-
-import com.zhengsr.cuslib.support.callback.ZBackInterface;
 
 
 /**
@@ -14,63 +8,57 @@ import com.zhengsr.cuslib.support.callback.ZBackInterface;
  * Time on 2018/10/18
  */
 
-public abstract class ZSupporFragment extends Fragment {
-    protected FragmentActivity _mActivity;
-    private SupporFragment mSupporFragment;
-    private ZBackInterface mZBackInterface;
+public abstract class ZSupporFragment extends ZBaseSupporFragment {
 
-   public  boolean onPressBack(){
-       return false;
-   }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        _mActivity = (FragmentActivity) context;
-        mSupporFragment = SupporFragment.getInstance();
-        if (getActivity() instanceof ZBackInterface){
-            mZBackInterface = (ZBackInterface) getActivity();
-        }
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        _mActivity = (FragmentActivity) activity;
-        mSupporFragment = SupporFragment.getInstance();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mZBackInterface.onBackPress(this);
-    }
-
-    //supportfragment
-
+    /**
+     * fragment 是否已经在fragmentmanager中
+     * @param aClass
+     * @return
+     */
     protected boolean findFragment(Class<?> aClass){
         return mSupporFragment.findFragment(aClass);
     }
 
+    /**
+     * 加载根fragment
+     * @param contentId
+     * @param fragment
+     */
     protected void loadRootFragment(int contentId,Fragment fragment){
         mSupporFragment.loadRootFragment(contentId,fragment);
     };
 
+    /**
+     * 显示当前fragment，隐藏其他fragment，不加回退栈
+     * @param showfragment
+     */
     protected void showAndHideOtherFragment(Fragment showfragment){
         mSupporFragment.showAndHideOtherFragment(showfragment,false);
     }
+    /**
+     * 显示当前fragment，隐藏其他fragment
+     * @param showfragment
+     */
     protected void showAndHideOtherFragment(Fragment showfragment, boolean addBackpop){
         mSupporFragment.showAndHideOtherFragment(showfragment,addBackpop);
     }
-    protected void showAndHideOtherFragment(FragmentManager fragmentManager, int parentContentId, Fragment showfragment){
-        mSupporFragment.showAndHideOtherFragment(fragmentManager,parentContentId,showfragment,false);
+
+
+    protected void showOrHideFragment(Fragment showFragment, Fragment hideFragment){
+        mSupporFragment.showOrHideFragment(showFragment,hideFragment,false);
     }
 
-    protected void ShowOrHideFragment(Fragment showFragment, Fragment hideFragment){
-        mSupporFragment.ShowOrHideFragment(showFragment,hideFragment,false);
+    protected void showOrHideFragment(Fragment showFragment, Fragment hideFragment, boolean addBackStatck){
+        mSupporFragment.showOrHideFragment(showFragment,hideFragment,addBackStatck);
     }
 
-    protected void ShowOrHideFragment(Fragment showFragment, Fragment hideFragment,boolean addBackStatck){
-        mSupporFragment.ShowOrHideFragment(showFragment,hideFragment,addBackStatck);
+    /**
+     * 替换fragment
+     * @param fragment
+     */
+    protected void replaceFragment(Fragment fragment){
+        mSupporFragment.replaceFragment(fragment);
     }
+
 }

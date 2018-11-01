@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.zhengsr.commonlib.R;
 import com.zhengsr.cuslib.support.ZSupporFragment;
-import com.zhengsr.cuslib.support.anim.AnimUtils;
+import com.zhengsr.cuslib.support.anim.ZsAnimUtils;
 
 /**
  * Created by zhengshaorui
@@ -33,7 +33,7 @@ public class TwoFragment extends ZSupporFragment {
     @Override
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         Log.d(TAG, "zsr --> onCreateAnimation: "+enter+" "+nextAnim);
-        return AnimUtils.transAnim(getActivity(),enter);
+        return ZsAnimUtils.transRightAnim(getActivity(),enter);
     }
 
     @Nullable
@@ -43,13 +43,13 @@ public class TwoFragment extends ZSupporFragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_test,container,false);
         View bgView = view.findViewById(R.id.test_ly);
         bgView.setBackgroundColor(Color.GRAY);
-        TextView textView = view.findViewById(R.id.test_tv);
+        TextView textView = (TextView) view.findViewById(R.id.test_tv);
         textView.setText("第二个fragment");
         view.findViewById(R.id.test_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ShowOrHideFragment(OneFragment.newInstance(),TwoFragment.this);
+                showOrHideFragment(OneFragment.newInstance(),TwoFragment.this);
             }
         });
         return view;
@@ -58,7 +58,7 @@ public class TwoFragment extends ZSupporFragment {
 
     @Override
     public boolean onPressBack() {
-        ShowOrHideFragment(OneFragment.newInstance(),TwoFragment.this);
+        showOrHideFragment(OneFragment.newInstance(),TwoFragment.this);
         return true;
     }
 }
