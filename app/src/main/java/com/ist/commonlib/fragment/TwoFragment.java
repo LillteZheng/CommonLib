@@ -1,6 +1,5 @@
-package com.zhengsr.commonlib.fragment;
+package com.ist.commonlib.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,12 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.TextView;
 
-import com.zhengsr.commonlib.R;
-import com.zhengsr.cuslib.support.ZSupporFragment;
-import com.zhengsr.cuslib.support.anim.ZsAnimUtils;
+import com.ist.commonlib.R;
+import com.ist.cuslib.support.ZSupporFragment;
 
 /**
  * Created by zhengshaorui
@@ -30,11 +27,6 @@ public class TwoFragment extends ZSupporFragment {
         return fragment;
     }
 
-    @Override
-    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
-        Log.d(TAG, "zsr --> onCreateAnimation: "+enter+" "+nextAnim);
-        return ZsAnimUtils.transRightAnim(getActivity(),enter);
-    }
 
     @Nullable
     @Override
@@ -42,14 +34,15 @@ public class TwoFragment extends ZSupporFragment {
 
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_test,container,false);
         View bgView = view.findViewById(R.id.test_ly);
-        bgView.setBackgroundColor(Color.GRAY);
         TextView textView = (TextView) view.findViewById(R.id.test_tv);
         textView.setText("第二个fragment");
+        Log.d(TAG, "zsr --> fragmen two: ");
         view.findViewById(R.id.test_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //目标明确，我点击就是要跳到第二个fragment
+                showAndHideFragment(OneFragment.newInstance(),TwoFragment.class);
 
-                showOrHideFragment(OneFragment.newInstance(),TwoFragment.this);
             }
         });
         return view;
@@ -58,7 +51,8 @@ public class TwoFragment extends ZSupporFragment {
 
     @Override
     public boolean onPressBack() {
-        showOrHideFragment(OneFragment.newInstance(),TwoFragment.this);
-        return true;
+       // showAndHideFragment(OneFragment.newInstance(),TwoFragment.class);
+       // popFragment();
+        return false;
     }
 }

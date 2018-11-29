@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zhengsr.commonlib">
+    package="com.ist.commonlib">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
@@ -8,8 +8,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -18,8 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ActivityFragment" />
-        <activity android:name=".activity.LazyActivity"></activity>
+        <activity android:name=".activity.CommonActivity" />
+        <activity android:name=".activity.LazyActivity" />
+        <activity android:name=".activity.FragmentTestActivity" />
+        <activity android:name=".activity.BackStackActivity" />
+        <activity android:name=".activity.IntentActivity"></activity>
     </application>
 
 </manifest>

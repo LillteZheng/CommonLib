@@ -1,18 +1,17 @@
-package com.zhengsr.commonlib.fragment;
+package com.ist.commonlib.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.TextView;
 
-import com.zhengsr.commonlib.R;
-import com.zhengsr.cuslib.support.ZSupporFragment;
-import com.zhengsr.cuslib.support.anim.ZsAnimUtils;
+import com.ist.commonlib.R;
+import com.ist.cuslib.support.ZSupporFragment;
 
 /**
  * Created by zhengshaorui
@@ -26,28 +25,29 @@ public class OneFragment extends ZSupporFragment {
         Bundle bundle = new Bundle();
         fragment.setArguments(bundle);
         return fragment;
-    }
+    } 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_test,container,false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_one,container,false);
         TextView textView = (TextView) view.findViewById(R.id.test_tv);
         textView.setText("第一个fragment");
+        Log.d(TAG, "zsr --> fragment one: ");
         view.findViewById(R.id.test_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // showOrHideFragment(TwoFragment.newInstance(),OneFragment.this);
-                replaceFragment(TwoFragment.newInstance());
+               // replaceFragment(TwoFragment.newInstance(),true, ZsAnimUtils.RIGHT_IN_LEFT_OUT);
+
+
+               showAndHideFragment(TwoFragment.newInstance(),OneFragment.class);
+
             }
         });
         return view;
 
     }
 
-    @Override
-    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
-        return ZsAnimUtils.transLeftAnim(_mActivity,enter);
-    }
+
 }

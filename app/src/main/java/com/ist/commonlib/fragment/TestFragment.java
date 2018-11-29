@@ -1,4 +1,4 @@
-package com.zhengsr.commonlib.fragment;
+package com.ist.commonlib.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,9 +9,11 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
-import com.zhengsr.cuslib.support.ZSupporFragment;
+import com.ist.cuslib.support.ZSupporFragment;
+import com.ist.cuslib.support.anim.ZsAnimUtils;
 
 /**
  * Created by zhengshaorui
@@ -47,5 +49,10 @@ public class TestFragment extends ZSupporFragment {
     public void lazyLoadView() {
         super.lazyLoadView();
         Log.d(TAG, "zsr --> 我可见了: "+mMsg);
+    }
+
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        return ZsAnimUtils.fadeAnim(_mActivity,enter);
     }
 }

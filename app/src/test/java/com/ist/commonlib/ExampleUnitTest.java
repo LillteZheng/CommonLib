@@ -1,4 +1,4 @@
-package com.zhengsr.cuslib;
+package com.ist.commonlib;
 
 import org.junit.Test;
 

@@ -4,19 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zhengsr.commonlib.MainActivity"
+    tools:context="com.ist.commonlib.MainActivity"
     android:orientation="vertical">
 
    <Button
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:onClick="fragment_hide"
+       android:onClick="FragmentTest"
        android:textAllCaps="false"
-       android:text="Fragment Hide show repalce 测试"/>
-   <Button
+       android:text="@string/fragment_test"/>
+
+   <com.ist.cuslib.view.CusPassEditView
+       android:id="@+id/custom"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:onClick="fragment_lazy"
-       android:textAllCaps="false"
-       android:text="Viewpager 懒加载 测试"/>
+       android:layout_height="50dp"
+       android:drawableRight="@mipmap/cuslib_eye_show"
+       />
+
+   <com.ist.cuslib.view.ViewTest
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"/>
+
 </LinearLayout>

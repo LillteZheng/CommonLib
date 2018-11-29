@@ -1,4 +1,4 @@
-package com.zhengsr.commonlib.activity;
+package com.ist.commonlib.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,8 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
-import com.zhengsr.commonlib.R;
-import com.zhengsr.commonlib.fragment.TestFragment;
+import com.ist.commonlib.R;
+import com.ist.commonlib.fragment.TestFragment;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">CommonLib</string>
+    <string name="common_fragment">Fragment Hide show repalce 测试</string>
+    <string name="lazy_fragment">Viewpager 懒加载测试</string>
+    <string name="test">测试</string>
+    <string name="fragment_test">Fragment 测试</string>
+    <string name="back_stack">回退栈示例</string>
+    <string name="test2">返回</string>
+    <string name="skip">跳转</string>
+    <string name="intent_test">测试 Fragment ActivityResult</string>
+    <string name="back_intent">退出，并传递Intent，给fragment测试</string>
 </resources>
